@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+//const webpack = require('webpack')
 const path = require('path')
 //const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 //const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -35,18 +35,18 @@ const plugins = [
 }*/
 
 const config = {
-  mode: 'development',
-  entry: './src/client.jsx',
+  entry: './src/entries/client.jsx',
   output: {
     filename: 'app.js',
     path: path.resolve('./build/statics'),
     /*publicPath: process.env.NODE_ENV === 'production'
-      ? 'https://junior-react-statics.now.sh'
-      : 'http://localhost:3001/',*/
+    ? 'https://junior-react-statics.now.sh'
+    : 'http://localhost:3001/',*/
   },
-  devServer: {
+  /*devServer: {
     port: 9000,
-  },
+  },*/
+  mode: 'development',
   devtool: 'eval-source-map',
   module: {
     rules: [ // change loaders by rules
@@ -68,7 +68,7 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react', 'stage-2'],
+            presets: ['react'],
             //plugins: ['transform-es2015-modules-commonjs'],
             /*env: {
               production: {
