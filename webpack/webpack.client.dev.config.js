@@ -1,10 +1,10 @@
 //const webpack = require('webpack')
 const path = require('path')
 //const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-//const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 //const nib = require('nib')
 
-//const ExtractCSS = new ExtractTextPlugin('../statics/styles.css');
+const ExtractCSS = new ExtractTextPlugin('../statics/styles.css');
 //const ExtractSTYL = new ExtractTextPlugin('../statics/main.css');
 
 
@@ -15,7 +15,7 @@ const plugins = [
     },
   }),*/
 //  ExtractSTYL,
-  //ExtractCSS,
+  ExtractCSS,
 ]
 
 /*if (env.NODE_ENV === 'production') {
@@ -68,7 +68,8 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['react'],
+            presets: ['es2015', 'react', 'stage-2'],
+            plugins: ['babel-plugin-transform-class-properties'],
             //plugins: ['transform-es2015-modules-commonjs'],
             /*env: {
               production: {
@@ -82,10 +83,13 @@ const config = {
           },
         }
       },
-      /*{
+      {
         test: /\.css$/,
-        loader: ExtractCSS.extract({ fallback: 'style-loader', use: 'css-loader?modules' }),
-      },*/
+        use: ExtractCSS.extract({
+          fallback: 'style-loader',
+          use: 'css-loader?modules'
+        }),
+      },
       /*{
         test: /\.styl$/,
         loader: ExtractSTYL.extract({ fallback: 'style-loader',

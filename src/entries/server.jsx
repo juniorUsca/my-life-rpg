@@ -63,7 +63,11 @@ import express from 'express'
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { Provider } from "react-redux";
+
+
 import Layout from '../server/layout.jsx';
+import store from '../redux/store'
 import App from '../app/app.jsx'
 
 
@@ -75,7 +79,9 @@ server.use(express.static('build'))
 //app.get('/', (req, res) => res.send('Hello World!'))
 server.get('*', (req, res) => {
   const html = renderToString(
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   )
   res.status(200).send(
     renderToStaticMarkup(

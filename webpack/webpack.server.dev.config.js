@@ -2,12 +2,12 @@ const webpack = require('webpack')
 //const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 const fs = require('fs')
-/*const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const nib = require('nib')
-
-const ExtractCSS = new ExtractTextPlugin('../statics/styles.css');
-const ExtractSTYL = new ExtractTextPlugin('../statics/main.css');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+/*const nib = require('nib')
 */
+const ExtractCSS = new ExtractTextPlugin('../statics/styles.css');
+//const ExtractSTYL = new ExtractTextPlugin('../statics/main.css');
+
 
 // dont bundle notthing of node_modules
 const nodeModules = fs
@@ -47,15 +47,19 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['react'],
+            presets: ['es2015', 'react', 'stage-2'],
+            plugins: ['babel-plugin-transform-class-properties'],
           },
         }
       },
-      /*{
-        test: /\.css$/,
-        loader: ExtractCSS.extract({ fallback: 'style-loader', use: 'css-loader?modules' }),
-      },
       {
+        test: /\.css$/,
+        use: ExtractCSS.extract({
+          fallback: 'style-loader',
+          use: 'css-loader?modules'
+        }),
+      },
+      /*{
         test: /\.styl$/,
         loader: ExtractSTYL.extract({ fallback: 'style-loader',
           use: ['css-loader?modules', {
@@ -74,17 +78,17 @@ const config = {
     extensions: ['.js', '.jsx', '.css', '.styl', '.json'],
   },*/
   externals: nodeModules,
-  /*plugins: [
-    new webpack.DefinePlugin({ // es para que react optimize el bundle para produccion
+  plugins: [
+    /*new webpack.DefinePlugin({ // es para que react optimize el bundle para produccion
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
       },
-    }),
+    }),*/
 
     // new ExtractTextPlugin('../statics/styles.css'),
-    ExtractSTYL,
+    //ExtractSTYL,
     ExtractCSS,
-  ],*/
+  ],
 };
 
 /*if (process.env.NODE_ENV === 'production') {
