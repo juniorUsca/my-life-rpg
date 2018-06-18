@@ -5,6 +5,8 @@ import _ from "lodash";
 import * as actions from "../../redux/actions";
 import ToDoListItem from "./ToDoListItem.jsx";
 
+import styles from './ToDoList.css';
+
 class ToDoList extends Component {
 
   state = {
@@ -28,7 +30,7 @@ class ToDoList extends Component {
     const { addFormVisible, addFormValue } = this.state;
     if (addFormVisible) {
       return (
-        <div id="todo-add-form" className="col s10 offset-s1">
+        <div id={styles['todo-add-form']} className="col s10 offset-s1">
           <form onSubmit={this.handleFormSubmit}>
             <div className="input-field">
               <i className="material-icons prefix">note_add</i>
@@ -58,8 +60,8 @@ class ToDoList extends Component {
       <div className="col s10 offset-s1 center-align">
         <img
           alt="Nothing was found"
-          id="nothing-was-found"
-          src="/img/nothing.png"
+          className={styles['nothing-was-found']}
+          src="https://raw.githubusercontent.com/codewithbernard/react-redux-firebase/master/public/img/nothing.png"
         />
         <h4>You have completed all the tasks</h4>
         <p>Start by clicking add button in the bottom of the screen</p>
@@ -68,13 +70,14 @@ class ToDoList extends Component {
   }
 
   componentWillMount() {
+    console.log('before')
     this.props.fetchToDos();
   }
 
   render() {
     const { addFormVisible } = this.state;
     return (
-      <div className="to-do-list-container">
+      <div className={`${styles['to-do-list-container']} other-class`}>
         <div className="row">
           {this.renderAddForm()}
           {this.renderToDos()}

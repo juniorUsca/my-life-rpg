@@ -29,6 +29,7 @@ const config = {
   },
   mode: 'development',
   devtool: 'eval-source-map',
+  target: 'node',
   module: {
     rules: [ // cambiamos loaders por rules
       /*{
@@ -47,8 +48,9 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react', 'stage-2'],
-            plugins: ['babel-plugin-transform-class-properties'],
+            presets: ['react', 'stage-2'],
+            //presets: ['es2015', 'es2016', 'es2017', 'react', 'stage-2'],
+            //plugins: ['transform-class-properties', 'transform-regenerator', 'transform-runtime'],
           },
         }
       },
@@ -72,7 +74,6 @@ const config = {
       },*/
     ],
   },
-  target: 'node',
   //externals: { 'express': 'commonjs express' },
   /*resolve: {
     extensions: ['.js', '.jsx', '.css', '.styl', '.json'],

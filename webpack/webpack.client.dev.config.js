@@ -68,8 +68,10 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react', 'stage-2'],
-            plugins: ['babel-plugin-transform-class-properties'],
+            presets: ['react', 'stage-2'],
+            //presets: ['es2015', 'react', 'stage-2'],
+            //plugins: ['transform-class-properties', 'transform-regenerator', 'transform-runtime'],
+
             //plugins: ['transform-es2015-modules-commonjs'],
             /*env: {
               production: {

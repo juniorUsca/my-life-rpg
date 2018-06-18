@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { completeToDo } from "../../redux/actions";
+import styles from './ToDoList.css';
 
 class ToDoListItem extends Component {
 
@@ -14,12 +15,12 @@ class ToDoListItem extends Component {
   render() {
     const { todoId, todo } = this.props;
     return (
-      <div key="toDoName" className="col s10 offset-s1 to-do-list-item teal">
+      <div key="toDoName" className={`col s10 offset-s1 ${styles['to-do-list-item']} teal`}>
         <h4>
           {todo.title}{" "}
           <span
             onClick={() => this.handleCompleteClick(todoId)}
-            className="complete-todo-item waves-effect waves-light teal lighten-5 teal-text text-darken-4 btn"
+            className={`${styles['complete-todo-item']} waves-effect waves-light teal lighten-5 teal-text text-darken-4 btn`}
           >
             <i className="large material-icons">done</i>
           </span>
